@@ -8,7 +8,7 @@ public class ForumTestSuite {
     @Test
     public void testCaseUsername(){
         //Given
-        SimpleUser simpleUser = new SimpleUser("theForumUser");
+        SimpleUser simpleUser = new SimpleUser("theForumUser", "John Smith");
         //When
         String result = simpleUser.getUsername();
         //Then
