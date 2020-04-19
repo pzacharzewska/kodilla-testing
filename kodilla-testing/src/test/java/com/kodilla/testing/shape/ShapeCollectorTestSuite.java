@@ -46,4 +46,38 @@ public class ShapeCollectorTestSuite {
         retrievedFigure = shapeCollector.getFigure(0);
         Assert.assertEquals(figure1, retrievedFigure);
     }
+
+    @Test
+    public void testShowFigures(){
+        ShapeCollector shapeCollector = new ShapeCollector();
+        shapeCollector.addFigure(new Square("square", 4));
+        shapeCollector.addFigure(new Triangle("triangle", 3.5, 4.5));
+        shapeCollector.addFigure(new Circle("circle", 6));
+        shapeCollector.showFigures();
+    }
+
+    @Test
+    public void testRemoveNonExistingFigure(){
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape figure1 = new Circle("circle", 10.5);
+        shapeCollector.addFigure(figure1);
+        boolean result = shapeCollector.removeFigure(figure1);
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void testGetMinusFigure(){
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Assert.assertNotNull(shapeCollector.getFigure(-4));
+    }
+
+    @Test
+    public void testGetFigureOutOfList(){
+        ShapeCollector shapeCollector = new ShapeCollector();
+        shapeCollector.addFigure(new Circle("circle", 4));
+        shapeCollector.addFigure(new Square("square", 2.5));
+        shapeCollector.getFigure(5);
+        Assert.assertNotNull(shapeCollector.getFigure(5));
+    }
+
 }

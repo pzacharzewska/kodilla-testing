@@ -52,7 +52,7 @@ public class ForumUser {
 
     public boolean removePost(ForumPost thePost){
         boolean result = false;
-        if (posts.contains(thePost)) {
+        if (posts.contains(thePost)){
             posts.remove(thePost);
             result = true;
         }
