@@ -38,21 +38,20 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorNormalList() {
         OddNumbersExterminator oddNumbersExterminator2 = new OddNumbersExterminator();
         ArrayList<Integer> numbers2 = new ArrayList<>();
-        for (int n = 0; n < 20; n++) {
+        for (int n = 1; n < 20; n++) {
             numbers2.add(n);
         }
 
         ArrayList<Integer> oddNumbers = new ArrayList<>();
-            oddNumbers.add(1);
-            oddNumbers.add(3);
-            oddNumbers.add(5);
-            oddNumbers.add(7);
-            oddNumbers.add(9);
-            oddNumbers.add(11);
-            oddNumbers.add(13);
-            oddNumbers.add(15);
-            oddNumbers.add(17);
-            oddNumbers.add(19);
+            oddNumbers.add(2);
+            oddNumbers.add(4);
+            oddNumbers.add(6);
+            oddNumbers.add(8);
+            oddNumbers.add(10);
+            oddNumbers.add(12);
+            oddNumbers.add(14);
+            oddNumbers.add(16);
+            oddNumbers.add(18);
 
         ArrayList<Integer> result2 = oddNumbersExterminator2.exterminate(numbers2);
         System.out.println("Testing whether two lists are equals in progress...");
