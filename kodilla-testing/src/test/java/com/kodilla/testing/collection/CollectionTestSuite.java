@@ -38,11 +38,12 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorNormalList() {
         OddNumbersExterminator oddNumbersExterminator2 = new OddNumbersExterminator();
         ArrayList<Integer> numbers2 = new ArrayList<>();
-        for (int n = 1; n < 20; n++) {
+        for (int n = 0; n < 20; n++) {
             numbers2.add(n);
         }
 
         ArrayList<Integer> oddNumbers = new ArrayList<>();
+            oddNumbers.add(0);
             oddNumbers.add(2);
             oddNumbers.add(4);
             oddNumbers.add(6);
