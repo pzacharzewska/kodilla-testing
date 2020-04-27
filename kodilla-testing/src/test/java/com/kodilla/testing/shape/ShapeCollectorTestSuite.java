@@ -2,6 +2,8 @@ package com.kodilla.testing.shape;
 
 import org.junit.*;
 
+import static org.junit.Assert.*;
+
 public class ShapeCollectorTestSuite {
 
     private static int testCounter = 0;
@@ -25,16 +27,19 @@ public class ShapeCollectorTestSuite {
     public void testAddFigure() {
         ShapeCollector shapeCollector = new ShapeCollector();
         shapeCollector.addFigure(new Triangle("triangle", 4.0, 3.0));
-        Assert.assertEquals(1, shapeCollector.getFiguresQuantity());
+        assertEquals(1, shapeCollector.getFiguresQuantity());
+        System.out.println(shapeCollector.getFiguresQuantity());
     }
 
     @Test
     public void testRemoveFigure(){
         ShapeCollector shapeCollector = new ShapeCollector();
-        shapeCollector.addFigure(new Circle("circle", 8));
-        boolean result = shapeCollector.removeFigure(new Circle("circle", 8));
-        Assert.assertTrue(result);
-        Assert.assertEquals(0, shapeCollector.getFiguresQuantity());
+        shapeCollector.addFigure(new Triangle("triangle", 4.0, 3.0));
+        boolean result = shapeCollector.removeFigure(new Triangle("triangle", 4.0, 3.0));
+        assertTrue(result);
+        assertEquals(0, shapeCollector.getFiguresQuantity());
+        System.out.println(shapeCollector.getFiguresQuantity());
+
     }
 
     @Test
@@ -44,7 +49,7 @@ public class ShapeCollectorTestSuite {
         shapeCollector.addFigure(figure1);
         Shape retrievedFigure;
         retrievedFigure = shapeCollector.getFigure(0);
-        Assert.assertEquals(figure1, retrievedFigure);
+        assertEquals(figure1, retrievedFigure);
     }
 
     @Test
@@ -62,13 +67,13 @@ public class ShapeCollectorTestSuite {
         Shape figure1 = new Circle("circle", 10.5);
         shapeCollector.addFigure(figure1);
         boolean result = shapeCollector.removeFigure(figure1);
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
     public void testGetMinusFigure(){
         ShapeCollector shapeCollector = new ShapeCollector();
-        Assert.assertNull(shapeCollector.getFigure(-4));
+        assertNull(shapeCollector.getFigure(-4));
     }
 
     @Test
@@ -77,7 +82,7 @@ public class ShapeCollectorTestSuite {
         shapeCollector.addFigure(new Circle("circle", 4));
         shapeCollector.addFigure(new Square("square", 2.5));
         shapeCollector.getFigure(5);
-        Assert.assertNull(shapeCollector.getFigure(5));
+        assertNull(shapeCollector.getFigure(5));
     }
 
 }
