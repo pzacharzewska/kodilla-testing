@@ -68,7 +68,7 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testGetMinusFigure(){
         ShapeCollector shapeCollector = new ShapeCollector();
-        Assert.assertNotNull(shapeCollector.getFigure(-4));
+        Assert.assertNull(shapeCollector.getFigure(-4));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ShapeCollectorTestSuite {
         shapeCollector.addFigure(new Circle("circle", 4));
         shapeCollector.addFigure(new Square("square", 2.5));
         shapeCollector.getFigure(5);
-        Assert.assertNotNull(shapeCollector.getFigure(5));
+        Assert.assertNull(shapeCollector.getFigure(5));
     }
 
 }
