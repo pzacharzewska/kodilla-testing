@@ -4,21 +4,6 @@ import java.util.ArrayList;
 
 public class ShapeCollector{
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ShapeCollector that = (ShapeCollector) o;
-
-        return shapes.equals(that.shapes);
-    }
-
-    @Override
-    public int hashCode() {
-        return shapes.hashCode();
-    }
-
     private ArrayList<ShapeCollector> shapes = new ArrayList<>();
 
     public void addFigure (Shape shape){
@@ -37,12 +22,8 @@ public class ShapeCollector{
     }
 
     public Shape getFigure(int n){
-        ShapeCollector figure = null;
-        if (n >= 0 && n < shapes.size()){
-            figure = shapes.get(n);
-        }
 
-        return figure;
+        return null;
 
     }
 

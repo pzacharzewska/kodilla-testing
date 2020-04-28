@@ -36,7 +36,7 @@ public class ShapeCollectorTestSuite {
         ShapeCollector shapeCollector = new ShapeCollector();
         shapeCollector.addFigure(new Triangle("triangle", 4.0, 3.0));
         boolean result = shapeCollector.removeFigure(new Triangle("triangle", 4.0, 3.0));
-        assertTrue(result);
+        assertEquals(true, result);
         assertEquals(0, shapeCollector.getFiguresQuantity());
         System.out.println(shapeCollector.getFiguresQuantity());
 
