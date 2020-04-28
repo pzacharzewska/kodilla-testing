@@ -34,9 +34,9 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testRemoveFigure(){
         ShapeCollector shapeCollector = new ShapeCollector();
-        shapeCollector.addFigure(new Triangle("triangle", 4.0, 3.0));
-        boolean result = shapeCollector.removeFigure(new Triangle("triangle", 4.0, 3.0));
-        assertEquals(true, result);
+        Shape figure = new Circle("circle", 10.5);
+        shapeCollector.addFigure(figure);
+        shapeCollector.removeFigure(figure);
         assertEquals(0, shapeCollector.getFiguresQuantity());
         System.out.println(shapeCollector.getFiguresQuantity());
 
@@ -66,8 +66,9 @@ public class ShapeCollectorTestSuite {
         ShapeCollector shapeCollector = new ShapeCollector();
         Shape figure1 = new Circle("circle", 10.5);
         shapeCollector.addFigure(figure1);
-        boolean result = shapeCollector.removeFigure(figure1);
-        assertFalse(result);
+        shapeCollector.removeFigure(figure1);
+        assertEquals(0, shapeCollector.getFiguresQuantity());
+        System.out.println(shapeCollector.getFiguresQuantity());
     }
 
     @Test
