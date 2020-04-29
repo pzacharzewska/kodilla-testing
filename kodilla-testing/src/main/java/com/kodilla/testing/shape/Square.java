@@ -40,4 +40,12 @@ public class Square implements Shape {
     public double getShapeField() {
         return side*2;
     }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "name='" + name + '\'' +
+                ", side=" + side +
+                '}';
+    }
 }

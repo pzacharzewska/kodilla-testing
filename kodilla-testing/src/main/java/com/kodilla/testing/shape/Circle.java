@@ -45,4 +45,12 @@ public class Circle implements Shape {
         return PI*r*r ;
     }
 
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "name='" + name + '\'' +
+                ", r=" + r +
+                ", PI=" + PI +
+                '}';
+    }
 }

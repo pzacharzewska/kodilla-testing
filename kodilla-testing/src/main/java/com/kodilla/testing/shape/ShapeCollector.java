@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class ShapeCollector{
 
-    private ArrayList<ShapeCollector> shapes = new ArrayList<>();
+    private ArrayList<Shape> shapes = new ArrayList<>();
+
 
     public void addFigure (Shape shape){
-        ShapeCollector figure = new ShapeCollector();
-        shapes.add(figure);
+        shapes.add(shape);
     }
 
     public void removeFigure (Shape shape){
@@ -16,7 +16,8 @@ public class ShapeCollector{
     }
 
     public Shape getFigure(int n){
-      return null;
+
+        return shapes.get(n);
     }
 
     public void showFigures(){
@@ -27,4 +28,6 @@ public class ShapeCollector{
     public int getFiguresQuantity(){
         return shapes.size();
     }
+
+
 }

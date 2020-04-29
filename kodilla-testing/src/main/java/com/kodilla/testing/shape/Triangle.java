@@ -45,4 +45,13 @@ public class Triangle implements Shape {
     public double getShapeField() {
         return 0.5*height*base;
     }
+
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "name='" + name + '\'' +
+                ", height=" + height +
+                ", base=" + base +
+                '}';
+    }
 }
