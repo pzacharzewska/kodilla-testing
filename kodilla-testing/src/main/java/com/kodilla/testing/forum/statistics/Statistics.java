@@ -8,4 +8,6 @@ public interface Statistics {
     int postsCount();
     int commentsCount();
 
+
+
 }
