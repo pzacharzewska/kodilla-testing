@@ -74,6 +74,7 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testGetMinusFigure(){
         ShapeCollector shapeCollector = new ShapeCollector();
+        shapeCollector.addFigure(new Circle("circle", 4));
         assertNull(shapeCollector.getFigure(-4));
     }
 
