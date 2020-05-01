@@ -165,7 +165,7 @@ public class CalculateStatisticsTestSuite {
         for (int i = 0; i < 100; i++){
             users.add("User #" + i);
         }
-        int postsCount = 0;
+        int postsCount = 72;
         int commentsCount = 150;
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);

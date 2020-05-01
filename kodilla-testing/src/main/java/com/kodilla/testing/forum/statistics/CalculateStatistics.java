@@ -29,28 +29,19 @@ public class CalculateStatistics {
         return commentsPerPostAverage;
     }
 
-    public CalculateStatistics() {
-        this.statistics = statistics;
-        this.usersCount = usersCount;
-        this.postsAverage = postsAverage;
-        this.commentsAverage = commentsAverage;
-        this.commentsPerPostAverage = commentsPerPostAverage;
-   }
 
     public void calculateAdvStatistics(Statistics statistics) {
         usersCount = statistics.usersNames().size();
         postsCount1 = statistics.postsCount();
         if (usersCount != 0) {
-            if (postsCount1 != 0) {
-                postsAverage = statistics.postsCount() / this.usersCount;
-                commentsAverage = statistics.commentsCount() / this.usersCount;
-                commentsPerPostAverage = statistics.commentsCount() / statistics.postsCount();
-            } else {
-                postsAverage = statistics.postsCount() / this.usersCount;
-                commentsAverage = statistics.commentsCount() / this.usersCount;
-            }
+            postsAverage = statistics.postsCount() / (double) usersCount;
+            commentsAverage = statistics.commentsCount() / (double) usersCount;
+        }
+        if (postsCount1 != 0) {
+            commentsPerPostAverage = statistics.commentsCount() / (double) statistics.postsCount();
         }
     }
+
     public void showStatistics(){
         System.out.println("Number of users: " + getUsersCount());
         System.out.println("Number of posts: " + statistics.postsCount());
