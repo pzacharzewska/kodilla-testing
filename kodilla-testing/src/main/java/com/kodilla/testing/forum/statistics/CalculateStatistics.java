@@ -35,7 +35,7 @@ public class CalculateStatistics {
         this.postsAverage = postsAverage;
         this.commentsAverage = commentsAverage;
         this.commentsPerPostAverage = commentsPerPostAverage;
-    }
+   }
 
     public void calculateAdvStatistics(Statistics statistics) {
         usersCount = statistics.usersNames().size();
