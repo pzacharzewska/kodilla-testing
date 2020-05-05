@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public final class Country {
     private final String countryName;
-    BigDecimal peopleQuantity;
+    private final BigDecimal peopleQuantity;
 
     public Country(final String countryName, final BigDecimal peopleQuantity) {
         this.countryName = countryName;
@@ -26,8 +26,7 @@ public final class Country {
 
         Country country = (Country) o;
 
-        if (!countryName.equals(country.countryName)) return false;
-        return peopleQuantity != null ? peopleQuantity.equals(country.peopleQuantity) : country.peopleQuantity == null;
+        return countryName.equals(country.countryName);
     }
 
     @Override

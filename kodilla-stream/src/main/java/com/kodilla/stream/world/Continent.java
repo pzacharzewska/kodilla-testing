@@ -1,20 +1,26 @@
 package com.kodilla.stream.world;
 
-import java.util.ArrayList;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public final class Continent {
     private final String continentName;
-    private final Country country;
+    private final Set<Country> countries = new HashSet<>();
 
-    public Continent(final String continentName, final Country country) {
+    public Continent(final String continentName) {
         this.continentName = continentName;
-        this.country = country;
     }
 
-    private final ArrayList<Continent> countries = new ArrayList<>();
-    public Continent() {
-        countries.add(new Continent("Europe", new Country("Italy", "60360000"));
-        countries.add(new Continent("Europe", new Country("Great Britain", "66650000")));
+    public String getContinentName() {
+        return continentName;
     }
 
+    public void addCountry(Country country) {
+        countries.add(country);
+    }
+
+    public Set<Country> getCountries() {
+        return countries;
+    }
 }
