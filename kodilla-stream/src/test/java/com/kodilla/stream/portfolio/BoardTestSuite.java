@@ -4,8 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class BoardTestSuite {
 
@@ -15,12 +18,42 @@ public class BoardTestSuite {
         User user3 = new User("developer2", "Emilia Stephanson");
         User user4 = new User("developer3", "Konrad Bridge");
 
-        Task task1 = new Task("Microservice for taking temperature", "Write and test the microservice taking\n" + "the temperature from external service",user1, user2, LocalDate.now().minusDays(20), LocalDate.now().plusDays(30));
-        Task task2 = new Task("HQLs for analysis", "Prepare some HQL queries for analysis", user1, user2, LocalDate.now().minusDays(20), LocalDate.now().plusDays(5));
-        Task task3 = new Task("Temperature entity", "Prepare entity for temperatures", user3, user2, LocalDate.now().minusDays(20), LocalDate.now().plusDays(15));
-        Task task4 = new Task("Own logger", "Refactor company logger to meet our needs", user3, user2, LocalDate.now().minusDays(10), LocalDate.now().plusDays(25));
-        Task task5 = new Task("Optimize searching", "Archive data searching has to be optimized", user4, user2, LocalDate.now(), LocalDate.now().plusDays(5));
-        Task task6 = new Task("Use streams", "use Streams rather tahn for-loops in predictions", user4, user2, LocalDate.now().minusDays(15), LocalDate.now().minusDays(2));
+        Task task1 = new Task("Microservice for taking temperature",
+                "Write and test the microservice taking\n" + "the temperature from external service",
+                user1,
+                user2,
+                LocalDate.now().minusDays(20),
+                LocalDate.now().plusDays(30));
+        Task task2 = new Task("HQLs for analysis",
+                "Prepare some HQL queries for analysis",
+                user1,
+                user2,
+                LocalDate.now().minusDays(20),
+                LocalDate.now().minusDays(5));
+        Task task3 = new Task("Temperature entity",
+                "Prepare entity for temperatures",
+                user3,
+                user2,
+                LocalDate.now().minusDays(20),
+                LocalDate.now().plusDays(15));
+        Task task4 = new Task("Own logger",
+                "Refactor company logger to meet our needs",
+                user3,
+                user2,
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(25));
+        Task task5 = new Task("Optimize searching",
+                "Archive data searching has to be optimized",
+                user4,
+                user2,
+                LocalDate.now(),
+                LocalDate.now().plusDays(5));
+        Task task6 = new Task("Use streams",
+                "use Streams rather than for-loops in predictions",
+                user4,
+                user2,
+                LocalDate.now().minusDays(15),
+                LocalDate.now().minusDays(2));
 
         TaskList taskListToDo = new TaskList("To do");
         taskListToDo.addTask(task1);
@@ -53,10 +86,72 @@ public class BoardTestSuite {
         List<Task> tasks = project.getTaskLists().stream()
                 .flatMap(l -> l.getTasks().stream())
                 .filter(t -> t.getAssignedUser().equals(user))
-                .collect(Collectors.toList());
+                .collect(toList());
 
         Assert.assertEquals(2,tasks.size());
         Assert.assertEquals(user, tasks.get(0).getAssignedUser());
         Assert.assertEquals(user, tasks.get(1).getAssignedUser());
+    }
+
+    @Test
+    public void testAddTaskListFindOutdatedTasks(){
+        Board project = prepareTestData();
+
+        List<TaskList> undoneTasks = new ArrayList<>();
+        undoneTasks.add(new TaskList("To do"));
+        undoneTasks.add(new TaskList("In progress"));
+
+        List<Task> tasks = project.getTaskLists().stream()
+                .filter(undoneTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .filter(t -> t.getDeadline().isBefore(LocalDate.now()))
+                .collect(toList());
+
+        Assert.assertEquals(1, tasks.size());
+        Assert.assertEquals("HQLs for analysis", tasks.get(0).getTitle());
+    }
+
+    @Test
+    public void testAddTaskListFindLongTasks(){
+        Board project = prepareTestData();
+
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+
+        long longTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated())
+                .filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <=0)
+                .count();
+
+        Assert.assertEquals(2, longTasks);
+    }
+
+    @Test
+    public void testAddTaskListAverageWorkingOnTask(){
+        Task task;
+        Board project = prepareTestData();
+        List<TaskList> tasksInProgress = new ArrayList<>();
+        tasksInProgress.add(new TaskList("In progress"));
+
+        long longTasks = (long) project.getTaskLists().stream()
+                .filter(tasksInProgress::contains)
+                .flatMap(lt -> lt.getTasks().stream())
+                .mapToLong(t -> ChronoUnit.DAYS.between(t.getCreated(), LocalDate.now()))
+                .sum();
+
+        List<Task> quantityOfTasks = project.getTaskLists().stream()
+                .filter(tasksInProgress::contains)
+                .flatMap(lt -> lt.getTasks().stream())
+                .collect(toList());
+
+        System.out.println(longTasks);
+        System.out.println(quantityOfTasks.size());
+
+        double average = (double) longTasks / quantityOfTasks.size();
+
+        Assert.assertEquals(10, average, 0);
+
     }
 }
