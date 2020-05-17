@@ -1,5 +1,6 @@
 package com.kodilla.stream.array;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ArrayOperationsTestSuite implements ArrayOperations {
@@ -30,7 +31,9 @@ public class ArrayOperationsTestSuite implements ArrayOperations {
         numbers[19] = 6;
 
         double average = ArrayOperations.getAverage(numbers);
-        System.out.println(average);
+
+        Assert.assertEquals(3.95, average, 0.001);
+
 
     }
 }
