@@ -36,4 +36,10 @@ public class ArrayOperationsTestSuite implements ArrayOperations {
 
 
     }
+    @Test
+    public void testEmptyList(){
+        int[] numbers = new int[0];
+        double average = ArrayOperations.getAverage(numbers);
+        Assert.assertEquals(0, average, 0.001);
+    }
 }
